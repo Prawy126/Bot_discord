@@ -12,7 +12,7 @@ public class Witaj extends ListenerAdapter {
         String wiadomosc = event.getMessage().getContentRaw();
         String autor = event.getAuthor().getName();
         if (wiadomosc.equalsIgnoreCase("Witaj")) {
-            event.getChannel().sendMessage(autor + " spłuczka nie działa").queue();
+            event.getChannel().sendMessage(autor + " spłuczka nie działa. Czekam aż Prawy_126 to naprawi.").queue();
         }
     }
 
