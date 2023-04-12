@@ -6,11 +6,11 @@ import net.dv8tion.jda.api.OnlineStatus;
 
 public class Main {
 
-    private static final String TOKEN = "OTQ1NjIyMTExNzQ4MjM5MzYw.GMlE--.AdZWq0du_LLNPKlhVsujcrCrb-VTzwl0b41mOg";
+    private static final String TOKEN = "OTQ1NjIyMTExNzQ4MjM5MzYw.GJbx2j.RiJcxFUQj884zGc6BvW8SgEsxEaGBUqP9XB5UM";
 
     public static void main(String[] args) {
         JDA jda = JDABuilder.createDefault(TOKEN).build();
-        jda.addEventListener(new Witaj());
+
 
         if (jda.getStatus() == JDA.Status.CONNECTED) {
             System.out.println("Bot connected!");
