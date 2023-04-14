@@ -6,7 +6,7 @@ import net.dv8tion.jda.api.OnlineStatus;
 
 public class Main {
 
-    private static final String TOKEN = "OTQ1NjIyMTExNzQ4MjM5MzYw.GJbx2j.RiJcxFUQj884zGc6BvW8SgEsxEaGBUqP9XB5UM";
+    private static final String TOKEN = "OTQ1NjIyMTExNzQ4MjM5MzYw.GiCs1E.eAb4Js46WA3Wp7N2ACxWsIUVmpMSomjvxGBQy8";
 
     public static void main(String[] args) {
         JDA jda = JDABuilder.createDefault(TOKEN).build();
