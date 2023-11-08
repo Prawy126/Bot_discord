@@ -1,3 +1,4 @@
+import komendy.Co;
 import komendy.Spam;
 import komendy.Witaj;
 import komendy.Test;
@@ -9,7 +10,7 @@ import net.dv8tion.jda.api.requests.GatewayIntent;
 
 public class Main {
 
-    private static final String TOKEN = "OTQ1NjIyMTExNzQ4MjM5MzYw.GiF0RG.RJ5tXYEqdru3HDtIHO3w9gIfYYt6IOtTaJA2yg";
+    private static final String TOKEN = "";
 
     public static void main(String[] args) {
         JDA jda = JDABuilder.createDefault(TOKEN).setActivity(Activity.playing("Jak wkurzyć Eresona")).enableIntents(GatewayIntent.MESSAGE_CONTENT).build();
@@ -32,6 +33,7 @@ public class Main {
         } catch (Exception e) {
             System.out.println("Failed to add event listener: " + e.getMessage());
         }
+        jda.addEventListener(new Co());
 
 
 
