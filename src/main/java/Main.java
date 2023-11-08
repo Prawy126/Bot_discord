@@ -2,42 +2,39 @@ import komendy.Co;
 import komendy.Spam;
 import komendy.Witaj;
 import komendy.Test;
+import muzyka.MusicBot;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 
+import javax.security.auth.login.LoginException;
+import java.util.EnumSet;
+
 public class Main {
 
     private static final String TOKEN = "";
 
     public static void main(String[] args) {
-        JDA jda = JDABuilder.createDefault(TOKEN).setActivity(Activity.playing("Jak wkurzyć Eresona")).enableIntents(GatewayIntent.MESSAGE_CONTENT).build();
-
-
-        if (jda.getStatus() == JDA.Status.CONNECTED) {
-            System.out.println("Bot connected!");
-        } else {
-            System.out.println("Bot failed to connect");
-        }
-        //jda.addEventListener(new Test());
-        //IDLE - zaraz wracam, ONLINE - online,
-        jda.getPresence().setStatus(OnlineStatus.DO_NOT_DISTURB);
-
         try {
-            jda.addEventListener(new Witaj());
-            //jda.addEventListener(new Test());
-            //lepiej tego nie odkomentowywać chyba że chcesz dostać spam po pierwszej wiadmości
-            //jda.addEventListener(new Spam());
+            // Utwórz JDA i włącz intencje w jednym wywołaniu
+            JDA jda = JDABuilder.createDefault(TOKEN)
+                    .enableIntents(EnumSet.of(GatewayIntent.GUILD_VOICE_STATES, GatewayIntent.MESSAGE_CONTENT))
+                    .setActivity(Activity.competing("Najlpeszy kibel na tym serwerze"))
+                    .build();
+
+            // Czekaj na gotowość JDA przed dodaniem słuchaczy
+            jda.awaitReady(); // Czekaj, aż JDA będzie gotowe. To jest wywołanie blokujące.
+
+            // Dodaj ListenerAdapter'y po inicjalizacji JDA
+            jda.addEventListener(new Witaj(), new Co(), new MusicBot());
+            jda.getPresence().setStatus(OnlineStatus.DO_NOT_DISTURB); // Ustaw status na DND po dodaniu słuchaczy
+
+            System.out.println("Bot connected!");
         } catch (Exception e) {
-            System.out.println("Failed to add event listener: " + e.getMessage());
+            e.printStackTrace(); // Wydrukuj pełny stack trace w przypadku wyjątku
         }
-        jda.addEventListener(new Co());
-
-
-
-
     }
 }
 
