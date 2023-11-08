@@ -11,14 +11,13 @@ public class Witaj extends ListenerAdapter {
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
-        Message message = event.getMessage();
-        MessageChannel channel = event.getChannel();
-        String wiadomosc = event.getMessage().getContentRaw();
-        String autor = event.getAuthor().getName();
-        if (wiadomosc.equalsIgnoreCase("!!witaj")) {
-            System.out.println("dostałem wiadomość");
-            channel.sendMessage(autor + " spłuczka nie działa. Czekam aż Prawy_126 to naprawi.").queue();
 
+
+        String message = event.getMessage().getContentRaw();
+        String autor = event.getAuthor().getName();
+        if (message.equalsIgnoreCase("!witaj")) {
+            System.out.println("dostałem wiadomość");
+            event.getChannel().sendMessage("Cześć " + autor).queue();
 
         }
     }

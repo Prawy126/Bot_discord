@@ -4,13 +4,15 @@ import komendy.Test;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
+import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.requests.GatewayIntent;
 
 public class Main {
 
-    private static final String TOKEN = "TOKEN";
+    private static final String TOKEN = "OTQ1NjIyMTExNzQ4MjM5MzYw.GiF0RG.RJ5tXYEqdru3HDtIHO3w9gIfYYt6IOtTaJA2yg";
 
     public static void main(String[] args) {
-        JDA jda = JDABuilder.createDefault(TOKEN).build();
+        JDA jda = JDABuilder.createDefault(TOKEN).setActivity(Activity.playing("Jak wkurzyć Eresona")).enableIntents(GatewayIntent.MESSAGE_CONTENT).build();
 
 
         if (jda.getStatus() == JDA.Status.CONNECTED) {
@@ -20,7 +22,7 @@ public class Main {
         }
         //jda.addEventListener(new Test());
         //IDLE - zaraz wracam, ONLINE - online,
-        jda.getPresence().setStatus(OnlineStatus.IDLE);
+        jda.getPresence().setStatus(OnlineStatus.DO_NOT_DISTURB);
 
         try {
             jda.addEventListener(new Witaj());
